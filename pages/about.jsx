@@ -1,11 +1,24 @@
-import classes from "../styles/About.module.scss"
+import Head from "next/head"
+import Footer from "../components/Footer"
 
 const About = () => {
   return (
-    <div>
-      <div className={classes.highlightscss}>About Page</div>
-    </div>
+    <>
+      PRG-Coding
+      <div>
+        <div className="content">About Page</div>
+      </div>
+    </>
   )
 }
 
 export default About
+
+About.getLayout = function getLayout(page) {
+  return (
+    <>
+      {page}
+      <Footer />
+    </>
+  )
+}
