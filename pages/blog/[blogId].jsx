@@ -7,13 +7,28 @@ function Blog({ title, description }) {
         <title>{title}</title>
         <meta name="description" content={description} />
       </Head>
-      <h1 className="content">Article</h1>
+      <h1 className="content">
+        Env Analytics {process.env.NEXT_PUBLIC_ANALYTICS_ID}
+      </h1>
     </div>
   )
 }
 export default Blog
 
-export async function getServerSideProps() {
+export async function getStaticPaths() {
+  return {
+    paths: [{ params: { blogId: "1" } }],
+    fallback: false,
+  }
+}
+
+export async function getStaticProps() {
+  const user = process.env.DB_USER
+  const password = process.env.DB_PASSWORD
+
+  console.log(
+    `Connexting to database with user ${user} and password ${password}`
+  )
   return {
     props: {
       title: "Article Title",
